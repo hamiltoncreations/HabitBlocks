@@ -13,6 +13,8 @@
 		46A4A847271E479800E7BB7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46A4A846271E479800E7BB7D /* Preview Assets.xcassets */; };
 		46A4A852271E479800E7BB7D /* Habit_BlocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4A851271E479800E7BB7D /* Habit_BlocksTests.swift */; };
 		46A4A85D271E479800E7BB7D /* Habit_BlocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4A85C271E479800E7BB7D /* Habit_BlocksUITests.swift */; };
+		46A4A879271E54CB00E7BB7D /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4A878271E54CB00E7BB7D /* CalendarDayView.swift */; };
+		46A4A87E271E5A2400E7BB7D /* CalendarMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4A87D271E5A2400E7BB7D /* CalendarMonthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		46A4A858271E479800E7BB7D /* Habit BlocksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habit BlocksUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A4A85C271E479800E7BB7D /* Habit_BlocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_BlocksUITests.swift; sourceTree = "<group>"; };
 		46A4A85E271E479800E7BB7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46A4A878271E54CB00E7BB7D /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
+		46A4A87D271E5A2400E7BB7D /* CalendarMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +99,9 @@
 		46A4A83E271E479000E7BB7D /* Habit Blocks */ = {
 			isa = PBXGroup;
 			children = (
-				46A4A83F271E479000E7BB7D /* Habit_BlocksApp.swift */,
-				46A4A841271E479000E7BB7D /* ContentView.swift */,
-				46A4A843271E479800E7BB7D /* Assets.xcassets */,
-				46A4A848271E479800E7BB7D /* Info.plist */,
+				46A4A871271E53DB00E7BB7D /* Model */,
+				46A4A870271E53D500E7BB7D /* View */,
+				46A4A86F271E53CB00E7BB7D /* App */,
 				46A4A845271E479800E7BB7D /* Preview Content */,
 			);
 			path = "Habit Blocks";
@@ -128,6 +131,33 @@
 				46A4A85E271E479800E7BB7D /* Info.plist */,
 			);
 			path = "Habit BlocksUITests";
+			sourceTree = "<group>";
+		};
+		46A4A86F271E53CB00E7BB7D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				46A4A83F271E479000E7BB7D /* Habit_BlocksApp.swift */,
+				46A4A841271E479000E7BB7D /* ContentView.swift */,
+				46A4A843271E479800E7BB7D /* Assets.xcassets */,
+				46A4A848271E479800E7BB7D /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		46A4A870271E53D500E7BB7D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		46A4A871271E53DB00E7BB7D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				46A4A878271E54CB00E7BB7D /* CalendarDayView.swift */,
+				46A4A87D271E5A2400E7BB7D /* CalendarMonthView.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +289,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46A4A879271E54CB00E7BB7D /* CalendarDayView.swift in Sources */,
+				46A4A87E271E5A2400E7BB7D /* CalendarMonthView.swift in Sources */,
 				46A4A842271E479000E7BB7D /* ContentView.swift in Sources */,
 				46A4A840271E479000E7BB7D /* Habit_BlocksApp.swift in Sources */,
 			);
@@ -420,7 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Habit Blocks/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Habit Blocks/Info.plist";
+				INFOPLIST_FILE = "Habit Blocks/App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -441,7 +473,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Habit Blocks/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Habit Blocks/Info.plist";
+				INFOPLIST_FILE = "Habit Blocks/App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
