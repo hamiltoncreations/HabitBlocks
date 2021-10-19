@@ -14,16 +14,29 @@ struct CalendarMonthView: View {
                 CalendarDayView(date: 1)
                 CalendarDayView(date: 2)
                 CalendarDayView(date: 3)
-            }
+                CalendarDayView(date: 1)
+                CalendarDayView(date: 2)
+                CalendarDayView(date: 3)
+                CalendarDayView(date: 3)
+            }.frame(maxWidth:.infinity)
             HStack {
                 CalendarDayView(date: 4)
                 CalendarDayView(date: 5)
                 CalendarDayView(date: 6)
-            }
+                CalendarDayView(date: 1)
+                CalendarDayView(date: 2)
+                CalendarDayView(date: 3)
+                CalendarDayView(date: 3)
+            }.frame(maxWidth:.infinity)
             HStack {
                 CalendarDayView(date: 7)
                 CalendarDayView(date: 8)
-            }
+                CalendarDayView(date: 1)
+                CalendarDayView(date: 2)
+                CalendarDayView(date: 3)
+                CalendarDayView(date: 1)
+                CalendarDayView(date: 2)
+            }.frame(maxWidth:.infinity)
         }
     }
 }

@@ -14,7 +14,7 @@ struct CalendarDayView: View {
     var body: some View {
         Rectangle()
             .fill(Color.white)
-            .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .aspectRatio(1.0, contentMode: .fit)
             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
             .overlay(
                 Text("\(date)")
