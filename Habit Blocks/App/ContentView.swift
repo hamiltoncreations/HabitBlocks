@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        CalendarMonthView()
+        CalendarMonthView(name: "October", numberOfDays: 31)
     }
 }
 

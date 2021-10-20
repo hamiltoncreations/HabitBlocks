@@ -17,7 +17,13 @@ struct CalendarDayView: View {
             .aspectRatio(1.0, contentMode: .fit)
             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
             .overlay(
-                Text("\(date)")
+                VStack {
+                    HStack {
+                        Text("\(date)").padding(3).font(.caption2)
+                        Spacer()
+                    }
+                    Spacer()
+                }
             )
     }
 }

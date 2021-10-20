@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4697A058271FA96000DD0700 /* CalendarWeekDaysTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4697A057271FA96000DD0700 /* CalendarWeekDaysTitleView.swift */; };
 		46A4A840271E479000E7BB7D /* Habit_BlocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4A83F271E479000E7BB7D /* Habit_BlocksApp.swift */; };
 		46A4A842271E479000E7BB7D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4A841271E479000E7BB7D /* ContentView.swift */; };
 		46A4A844271E479800E7BB7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46A4A843271E479800E7BB7D /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4697A057271FA96000DD0700 /* CalendarWeekDaysTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWeekDaysTitleView.swift; sourceTree = "<group>"; };
 		46A4A83C271E479000E7BB7D /* Habit Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habit Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A4A83F271E479000E7BB7D /* Habit_BlocksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_BlocksApp.swift; sourceTree = "<group>"; };
 		46A4A841271E479000E7BB7D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			children = (
 				46A4A878271E54CB00E7BB7D /* CalendarDayView.swift */,
 				46A4A87D271E5A2400E7BB7D /* CalendarMonthView.swift */,
+				4697A057271FA96000DD0700 /* CalendarWeekDaysTitleView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				46A4A87E271E5A2400E7BB7D /* CalendarMonthView.swift in Sources */,
 				46A4A842271E479000E7BB7D /* ContentView.swift in Sources */,
 				46A4A840271E479000E7BB7D /* Habit_BlocksApp.swift in Sources */,
+				4697A058271FA96000DD0700 /* CalendarWeekDaysTitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
