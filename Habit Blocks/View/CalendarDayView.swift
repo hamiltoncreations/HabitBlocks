@@ -19,7 +19,9 @@ struct CalendarDayView: View {
             .overlay(
                 VStack {
                     HStack {
-                        Text("\(date)").padding(3).font(.caption2)
+                        if (date > 0) {
+                            Text("\(date)").padding(3).font(.caption2)
+                        }
                         Spacer()
                     }
                     Spacer()
