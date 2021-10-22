@@ -27,10 +27,6 @@ struct CalendarMonthView: View {
                         let remainingDaysInWeek: Int = (dates.count - (weekNum+1)*7 > 0 ? 7 :dates.count % 7)
                         
                         ForEach((0..<remainingDaysInWeek), id: \.self) { itr in
-                        
-                            /*
-                             (dates.count - (weekNum+1)*7 > 0 ? 7 :dates.count % 7)
-                             */
                             
                             if let dateBlock = dates[itr + (weekNum * 7)] {
                                 CalendarDayView(date:dateBlock.day)
@@ -39,39 +35,6 @@ struct CalendarMonthView: View {
                     }.frame(maxWidth:.infinity)
                 }
             }
-            
-            /*HStack(spacing: 0) {
-                if let dates = dates {
-                    ForEach((0..<7), id: \.self) { itr in
-                        
-                        CalendarDayView(date:dates[itr].day)
-                    }
-                }
-            }.frame(maxWidth:.infinity)
-            HStack(spacing: 0) {
-                if let dates = dates {
-                    ForEach((7..<14), id: \.self) { itr in
-                        
-                        CalendarDayView(date:dates[itr].day)
-                    }
-                }
-            }.frame(maxWidth:.infinity)
-            HStack(spacing: 0) {
-                if let dates = dates {
-                    ForEach((14..<21), id: \.self) { itr in
-                        
-                        CalendarDayView(date:dates[itr].day)
-                    }
-                }
-            }.frame(maxWidth:.infinity)
-            HStack(spacing: 0) {
-                if let dates = dates {
-                    ForEach((21..<28), id: \.self) { itr in
-                        
-                        CalendarDayView(date:dates[itr].day)
-                    }
-                }
-            }.frame(maxWidth:.infinity)*/
         }
         .onAppear {
             buildDates()
@@ -94,7 +57,7 @@ struct CalendarMonthView: View {
         
         let weekday = Calendar.current.component(.weekday, from: day1)
         
-        for _ in 0..<weekday {
+        for _ in 1..<weekday {
             dates.append(DateInfo(day: 0, month: month, year: year))
         }
         
