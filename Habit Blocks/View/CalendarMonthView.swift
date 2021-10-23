@@ -9,28 +9,30 @@ import SwiftUI
 
 struct CalendarMonthView: View {
     
-    var name: String
+    @State var name: String = ""
     var year: Int
     var month: Int
-    var numberOfDays: Int
     @State var dates: [DateInfo]!
     
     var body: some View {
         VStack(spacing:0) {
             
+            Text(name + ", \(year)")
+            
             DayOfWeekTitlesView()
             
             if let dates = dates {
-                ForEach((0...dates.count/7), id: \.self) {weekNum in
+                let numWeeks = dates.count/7
+                
+                // Loop through the weeks, then loop through the days
+                //  and draw each CalendarDayView.
+                ForEach((0..<numWeeks), id: \.self) {weekNum in
                     HStack(spacing: 0) {
-                        
-                        let remainingDaysInWeek: Int = (dates.count - (weekNum+1)*7 > 0 ? 7 :dates.count % 7)
-                        
-                        ForEach((0..<remainingDaysInWeek), id: \.self) { itr in
+                        ForEach((0..<7), id: \.self) { itr in
                             
-                            if let dateBlock = dates[itr + (weekNum * 7)] {
-                                CalendarDayView(date:dateBlock.day)
-                            }
+                            let curDateBlock = dates[itr + (weekNum * 7)]
+                            CalendarDayView(date:curDateBlock.day)
+                            
                         }
                     }.frame(maxWidth:.infinity)
                 }
@@ -41,6 +43,11 @@ struct CalendarMonthView: View {
         }
     }
     
+    /// Builds the dates object for rendering the month.
+    ///
+    ///  This method will use the object's year and month values to determine the correct
+    ///     amount of days to populate the month with and the correct first day of the
+    ///     week.
     func buildDates() {
         dates = []
         
@@ -51,25 +58,44 @@ struct CalendarMonthView: View {
         
         let userCalendar = Calendar(identifier: .gregorian)
         guard let day1 = userCalendar.date(from: dateComponents) else {
-            // We royally failed!
+            // Not a valid month/year
             return;
         }
         
-        let weekday = Calendar.current.component(.weekday, from: day1)
+        name = getNameOfMonth(date: day1)
         
+        // Prepopulate dates with filler dates to arrive at the
+        //  correct day of the week for the first day.
+        let weekday = Calendar.current.component(.weekday, from: day1)
         for _ in 1..<weekday {
             dates.append(DateInfo(day: 0, month: month, year: year))
         }
         
-        for i in 1...30 {
+        // Fill in the rest of the month's dates.
+        let range = userCalendar.range(of: .day, in: .month, for: day1)!
+        for i in 1...range.count {
             dates.append(DateInfo(day:i, month: month, year: year))
         }
+        
+        // Add filler dates for the rest of the week.
+        // The view depends on this to draw correctly.
+        while dates.count % 7 != 0 {
+            dates.append(DateInfo(day: 0, month: month, year: year))
+        }
+    }
+    
+    func getNameOfMonth(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLLL"
+        let nameOfMonth = dateFormatter.string(from: date)
+        
+        return nameOfMonth
     }
 }
 
 struct CalendarMonthView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarMonthView(name: "Spooktober", year: 2021, month: 10, numberOfDays: 31)
+        CalendarMonthView(year: 2021, month: 10)
     }
 }
 
