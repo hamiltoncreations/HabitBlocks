@@ -10,16 +10,47 @@ import SwiftUI
 struct CalendarMonthView: View {
     
     @State var name: String = ""
-    var year: Int
-    var month: Int
+    @State var year: Int
+    @State var month: Int
     @State var dates: [DateInfo]!
     
     var body: some View {
         VStack(spacing:0) {
             
+            
             Text(name + ", \(year)")
             
-            DayOfWeekTitlesView()
+            HStack {
+                Button(action:{
+                    month -= 1
+                    
+                    if month < 1 {
+                        month = 12
+                        year -= 1
+                    }
+                    
+                    buildDates()
+                }) {
+                    Text("<-")
+                }
+                
+                DayOfWeekTitlesView()
+                
+                Button(action:{
+                    
+                    month += 1
+                    
+                    if month > 12 {
+                        month = 1
+                        year += 1
+                    }
+                    
+                    buildDates()
+                    
+                }) {
+                    Text("->")
+                }
+            }
             
             if let dates = dates {
                 let numWeeks = dates.count/7
