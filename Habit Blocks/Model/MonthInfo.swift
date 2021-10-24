@@ -10,6 +10,11 @@ import Foundation
 class MonthInfo: ObservableObject {
     @Published var dates: [DateInfo]
     var name: String
+    var weeks: Int {
+        get {
+            return dates.count/7
+        }
+    }
     
     init(month: Int, year: Int) {
         dates = []

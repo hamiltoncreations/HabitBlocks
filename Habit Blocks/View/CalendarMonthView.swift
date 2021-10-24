@@ -10,7 +10,7 @@ import SwiftUI
 struct CalendarMonthView: View {
     
     @ObservedObject var calendarInfo: CalendarInfo
-    @ObservedObject var monthInfo: MonthInfo
+    @StateObject var monthInfo: MonthInfo
     
     var body: some View {
         VStack(spacing:0) {
@@ -36,12 +36,10 @@ struct CalendarMonthView: View {
                     Text("->")
                 }
             }
-            
-            let numWeeks = monthInfo.dates.count/7
                 
             // Loop through the weeks, then loop through the days
             //  and draw each CalendarDayView.
-            ForEach((0..<numWeeks), id: \.self) {weekNum in
+            ForEach((0..<monthInfo.weeks), id: \.self) {weekNum in
                 HStack(spacing: 0) {
                     ForEach((0..<7), id: \.self) { itr in
                         
