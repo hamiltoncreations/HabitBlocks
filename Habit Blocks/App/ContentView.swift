@@ -12,7 +12,7 @@ struct ContentView: View {
     @StateObject var calendarInfo = CalendarInfo()
     
     var body: some View {
-        CalendarMonthView(calendarInfo: CalendarInfo(), monthInfo: MonthInfo(month: 10, year: 2021))
+        CalendarMonthView(calendarInfo: calendarInfo, monthInfo: MonthInfo(month: calendarInfo.month, year: calendarInfo.year))
     }
 }
 
