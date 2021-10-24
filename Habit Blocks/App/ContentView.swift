@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var calendarInfo = CalendarInfo()
+    
     var body: some View {
-        CalendarMonthView(year: 2021, month: 9)
+        CalendarMonthView(calendarInfo: calendarInfo, monthInfo: MonthInfo(month: calendarInfo.month, year: calendarInfo.year))
     }
 }
 
