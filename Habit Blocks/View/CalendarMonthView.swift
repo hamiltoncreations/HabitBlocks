@@ -9,27 +9,21 @@ import SwiftUI
 
 struct CalendarMonthView: View {
     
-    @State var name: String = ""
-    @State var year: Int
-    @State var month: Int
-    @State var dates: [DateInfo]!
+    @ObservedObject var calendarInfo: CalendarInfo
+    //@State var name: String = ""
+    //@State var dates: [DateInfo]!
+    @ObservedObject var monthInfo: MonthInfo
     
     var body: some View {
         VStack(spacing:0) {
             
             
-            Text(name + ", \(year)")
+            Text(monthInfo.name + ", \(calendarInfo.year)")
             
             HStack {
                 Button(action:{
-                    month -= 1
-                    
-                    if month < 1 {
-                        month = 12
-                        year -= 1
-                    }
-                    
-                    buildDates()
+                    calendarInfo.decreaseMonth()
+                    monthInfo.buildMonth(month: calendarInfo.month, year: calendarInfo.year)
                 }) {
                     Text("<-")
                 }
@@ -37,23 +31,16 @@ struct CalendarMonthView: View {
                 DayOfWeekTitlesView()
                 
                 Button(action:{
-                    
-                    month += 1
-                    
-                    if month > 12 {
-                        month = 1
-                        year += 1
-                    }
-                    
-                    buildDates()
+                    calendarInfo.increaseMonth()
+                    monthInfo.buildMonth(month: calendarInfo.month, year: calendarInfo.year)
                     
                 }) {
                     Text("->")
                 }
             }
             
-            if let dates = dates {
-                let numWeeks = dates.count/7
+            //if let dates = dates {
+            let numWeeks = monthInfo.dates.count/7
                 
                 // Loop through the weeks, then loop through the days
                 //  and draw each CalendarDayView.
@@ -61,17 +48,17 @@ struct CalendarMonthView: View {
                     HStack(spacing: 0) {
                         ForEach((0..<7), id: \.self) { itr in
                             
-                            let curDateBlock = dates[itr + (weekNum * 7)]
+                            let curDateBlock = monthInfo.dates[itr + (weekNum * 7)]
                             CalendarDayView(date:curDateBlock.day)
                             
                         }
                     }.frame(maxWidth:.infinity)
                 }
-            }
+            //}
         }
-        .onAppear {
+        /*.onAppear {
             buildDates()
-        }
+        }*/
     }
     
     /// Builds the dates object for rendering the month.
@@ -79,7 +66,7 @@ struct CalendarMonthView: View {
     ///  This method will use the object's year and month values to determine the correct
     ///     amount of days to populate the month with and the correct first day of the
     ///     week.
-    func buildDates() {
+    /*func buildDates() {
         dates = []
         
         var dateComponents = DateComponents()
@@ -113,20 +100,14 @@ struct CalendarMonthView: View {
         while dates.count % 7 != 0 {
             dates.append(DateInfo(day: 0, month: month, year: year))
         }
-    }
+    }*/
     
-    func getNameOfMonth(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "LLLL"
-        let nameOfMonth = dateFormatter.string(from: date)
-        
-        return nameOfMonth
-    }
+    
 }
 
 struct CalendarMonthView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarMonthView(year: 2021, month: 10)
+        CalendarMonthView(calendarInfo: CalendarInfo(), monthInfo: MonthInfo(month: 10, year: 2021))
     }
 }
 
