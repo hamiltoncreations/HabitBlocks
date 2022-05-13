@@ -12,46 +12,63 @@ struct CalendarMonthView: View {
     @ObservedObject var calendarInfo: CalendarInfo
     @StateObject var monthInfo: MonthInfo
     
+    @State var calendarDays: [[CalendarDayView]] = []
+    
     var body: some View {
         VStack(spacing:0) {
-            
-            
-            Text(monthInfo.name + ", \(calendarInfo.year)")
             
             HStack {
                 Button(action:{
                     calendarInfo.decreaseMonth()
                     monthInfo.buildMonth(month: calendarInfo.month, year: calendarInfo.year)
+                    rebuildView()
                 }) {
                     Text("<-")
                 }
                 
-                DayOfWeekTitlesView()
+                Text(monthInfo.name + ", \(calendarInfo.year)")
                 
                 Button(action:{
                     calendarInfo.increaseMonth()
                     monthInfo.buildMonth(month: calendarInfo.month, year: calendarInfo.year)
-                    
+                    rebuildView()
                 }) {
                     Text("->")
                 }
             }
+            
+            DayOfWeekTitlesView()
                 
             // Loop through the weeks, then loop through the days
             //  and draw each CalendarDayView.
-            ForEach((0..<monthInfo.weeks), id: \.self) {weekNum in
+            ForEach (calendarDays, id:\.self) { week in
                 HStack(spacing: 0) {
-                    ForEach((0..<7), id: \.self) { itr in
-                        
-                        let curDateBlock = monthInfo.dates[itr + (weekNum * 7)]
-                        CalendarDayView(date:curDateBlock.day)
-                        
+                    ForEach (week, id:\.id) { day in
+                        day
                     }
                 }.frame(maxWidth:.infinity)
             }
+        }.onAppear {
+            rebuildView()
         }
     }
     
+    func rebuildView() {
+        calendarDays = []
+        for weekNum in 0..<monthInfo.weeks {
+            
+            var weekData: [CalendarDayView] = []
+            
+            for dayNum in 0..<7 {
+                let curDateBlock = monthInfo.dates[dayNum + (weekNum * 7)]
+                
+                
+                weekData.append(CalendarDayView(date:curDateBlock.day))
+            }
+            
+            calendarDays.append(weekData)
+        }
+    }
 }
 
 struct CalendarMonthView_Previews: PreviewProvider {
