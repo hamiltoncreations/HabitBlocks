@@ -7,9 +7,18 @@
 
 import SwiftUI
 
-struct CalendarDayView: View {
+struct CalendarDayView: View, Hashable {
+    
+    static func == (lhs: CalendarDayView, rhs: CalendarDayView) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
     
     @State var date: Int
+    var id = UUID()
     
     var body: some View {
         Rectangle()
